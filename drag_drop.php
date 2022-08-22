@@ -25,7 +25,7 @@ $id = $_GET['id'];
                 foreach(explode(',', $row['images']) as $img) {
             ?>
 
-                    <li class="ui-state-default" data-id="<?php echo $id ?>" data-order="<?php echo $img ?>">
+                    <li class="ui-state-default" data-id="<?php echo $id ?>">
                         <img src="<?php echo $img ?>" class="image_link hidden" />
                         <div class=" h-56 rounded-md bg-center bg-cover mx-auto" style="background-image: url('<?php echo $img ?>');"></div>
                     </li>

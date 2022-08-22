@@ -14,7 +14,11 @@ if(isset($_POST['submit'])) {
         if(in_array($ext, $extension)) {
             $filename = str_replace('.', '_', basename($filename, $ext)) ;
             $newfilename = $filename.time().".".$ext;
-            $image = 'public/property/'. $newfilename;
+            $path = 'public/property/'.$name;
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $image = 'public/property/'.$name.'/'.$newfilename;
             move_uploaded_file($tmp_filename, $image);
             $array_image[] = $image;
 
@@ -37,9 +41,7 @@ if(isset($_POST['submit'])) {
     
     $array_image = implode(", ", $array_image);
     $insert_img = "INSERT INTO `property_list`(`images`, `name`) VALUES ('$array_image', '$name')";
-    $results = mysqli_query($con, $insert_img);
-
-    print_r($results);
+    mysqli_query($con, $insert_img);
     header("Location:index.php");
 
 }
