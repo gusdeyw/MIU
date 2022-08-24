@@ -15,7 +15,7 @@ include "db_connect.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css"></script>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Multiple Upload</title>
 
