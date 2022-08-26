@@ -62,7 +62,7 @@ include "db_connect.php";
                             <td>'.$id.'</td>
                             <td>'.$name.'</td>
                             <td>
-                                <a href="drag_drop.php?id='.$id.'" class = "text-blue-700">Detail</a>
+                                <a href="drag_drop.php?id='.$id.'" class = "text-blue-700">Update</a>
                             </td>
                         </tr>';
                     }
