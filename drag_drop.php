@@ -46,7 +46,7 @@ $id = $_GET['id'];
             while($row = mysqli_fetch_assoc($property)){
                 $name = $row['name'];
                 $images = $row['images'];
-                $array_image = explode(',', $row['images']);
+                $array_image = explode(', ', $row['images']);
                 foreach($array_image as $key => $img) {
                 
             ?>
@@ -96,14 +96,21 @@ $id = $_GET['id'];
                     id_image = $(this).attr("data-id");
                 });
                 
-                var allImage = images_arr.toString();
-                console.log(allImage);
+                // var allImage = images_arr.toString();
+                // console.log(images_arr);
+                var allimage = [];
+                $.each(images_arr, function(idx,val) {                    
+                var str = val;
+                allimage.push(str);
+                });
+                var imagetostr = allimage.join(", ");
+                console.log(imagetostr);
 
                 $.ajax({
                     type: "POST",
                     url: "update_image.php",
                     data: {
-                        image: allImage,
+                        image: imagetostr,
                         id : id_image
                     },
                     success:function(response) {

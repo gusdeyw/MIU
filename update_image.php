@@ -4,10 +4,10 @@ include "db_connect.php";
 
 
 if(isset($_POST['image'])){
-   $allImage = $_POST['image'];
+   $imagetostr = $_POST['image'];
    $id_image = $_POST['id'];
-   mysqli_query($con,"UPDATE property_list SET images = '$allImage' WHERE id_property= '$id_image'");
-   echo "Success";
+   mysqli_query($con,"UPDATE property_list SET images = '$imagetostr' WHERE id_property= '$id_image'");
+   echo "Success Update";
    exit();
 }
 
