@@ -34,7 +34,7 @@ $id = $_GET['id'];
                     $name = $row['name'];
                     $images = $row['images'];
 
-                    foreach(explode(', ', $row['images']) as $img) {
+                    foreach(explode(',', $row['images']) as $img) {
                      ?>
                      <!-- <div class="bg-white" data-id="<?php echo $id?>">
                         <img src="<?php echo $img ?>" class="image_link " />

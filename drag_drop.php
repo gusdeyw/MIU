@@ -41,23 +41,24 @@ $id = $_GET['id'];
     <div class="m-6">
         <ul id="sortable" class="grid grid-cols-4 gap-6 " >
             <?php
-            $sql = "SELECT * FROM property_list where id_property = '".$id."' ";
+            
             $property = mysqli_query($con, $sql);
             while($row = mysqli_fetch_assoc($property)){
                 $name = $row['name'];
                 $images = $row['images'];
-
-                foreach(explode(', ', $row['images']) as $img) {
+                $array_image = explode(',', $row['images']);
+                foreach($array_image as $key => $img) {
+                
             ?>
 
-                    <li class="ui-state-default relative" data-id="<?php echo $id ?>">
-                        <img src="<?php echo $img ?>" class="image_link rounded-2xl h-56 w-full" />
-                        <!-- <div class=" h-56 rounded-md bg-center bg-cover mx-auto" style="background-image: url('<?php echo $img ?>');"></div> -->
-                        <!-- <a href="#" type="button" class="px-2 py-2 bg-red-600 text-white font-medium text-xs uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg absolute top-0 right-0">
+                    <li class="ui-state-default relative" data-id="<?php echo $id ?>" >
+                        <img src="<?php echo $img ?>" id="image_link" class="image_link rounded-2xl h-56 w-full hidden" data-key="<?php echo $key ?>" />
+                        <div class=" h-56 rounded-2xl bg-center bg-cover mx-auto" style="background-image: url('<?php echo $img ?>');"></div>
+                        <button id="delete" class="px-2 py-2 bg-red-600 text-white font-medium text-xs uppercase rounded-full shadow-md hover:bg-red-700 hover:shadow-lg absolute top-0 right-0" >
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m-15 0l15 15" />
                             </svg>
 
-                        </a> -->
+                        </button>
                     </li>
             <?php
                 }
@@ -66,20 +67,18 @@ $id = $_GET['id'];
         </ul>  
           
         <div>
-            <button type='submit' value='Submit' id='submit' class="bg-blue-600 mt-6 p-2 rounded-lg">Submit</button>
             <a href="index.php" type='button' id='back' class="bg-gray-500 mt-6 p-2 rounded-lg">Back</a>
-
+            <button type='submit' value='Submit' id='submit' class="bg-blue-600 mt-6 p-2 rounded-lg">Submit</button>
         </div>  
 
         <p id="notif"></p>
     </div>
-       
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      
+    
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    
-
 
     <script>
       $(document).ready(function() {
@@ -108,15 +107,40 @@ $id = $_GET['id'];
                         id : id_image
                     },
                     success:function(response) {
-                        document.getElementById("notif").innerHTML = response;
+                        // document.getElementById("notif").innerHTML = response;
+                        alert(response);
                     },
                     error:function(){
                         alert("error");
                     }
                 });
             });
+
+            $("#delete").on("click", function() {
+                // $('img').eq(0).removeAttr('src');
+                
+                key = $(".image_link").attr("data-key");
+                console.log(key);
+                // var theRowId = $('#image_link:eq('+key+')').attr('src');
+                // console.log(theRowId);
+                // var key = 0;
+                // $("#sortable li").each(function(){
+                //     key = $(this).attr("data-key");
+                    
+                //     var theRowId = $('#image_link:eq('+key+')').attr('src');
+                //     $('#image_link#'+theRowId).remove();
+                //     $('#image_link[data-key="'+key+'"]').remove();
+                //     console.log(theRowId);
+                // });
+                
+            });
+
+            // function deleteImage(e) {
+            //     // $('#image_link').removeAttr('src');
+            //     var element = e;
+            //     element.removeAttr('src'); 
+            // }
         });
     </script>
 </body>
 </html>
-
